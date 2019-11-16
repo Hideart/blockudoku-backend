@@ -1,8 +1,7 @@
 {
     "defaultSeverity": "error",
     "extends": [
-        "tslint:recommended",
-        "tslint-react"
+        "tslint:recommended"
     ],
     "no-empty": [true, "allow-empty-catch"],
     "rules": {
@@ -107,10 +106,6 @@
             "check-module",
             "check-separator",
             "check-type"
-        ],
-        "jsx-no-multiline-js": false,
-        "jsx-no-lambda": false,
-        "object-literal-sort-keys": false,
-        "no-unused-variable": true
+        ]
     }
 }
