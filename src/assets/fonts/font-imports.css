@@ -1,0 +1,40 @@
+@font-face {
+    font-family: Stolzl;
+    src: url("./stolzl-bold.woff2") format("woff2");
+    font-weight: bold;
+}
+@font-face {
+    font-family: Stolzl;
+    src: url("./stolzl-medium.woff2") format("woff2");
+    font-weight: 800;
+}
+@font-face {
+    font-family: Stolzl;
+    src: url("./stolzl-book.woff2") format("woff2");
+    font-weight: 600;
+}
+@font-face {
+    font-family: Stolzl;
+    src: url("./stolzl-regular.woff2") format("woff2");
+    font-weight: 400;
+}
+@font-face {
+    font-family: Stolzl;
+    src: url("./stolzl-light.woff2") format("woff2");
+    font-weight: 200;
+}
+@font-face {
+    font-family: Stolzl;
+    src: url("./stolzl-thin.woff2") format("woff2");
+    font-weight: 1;
+}
+@font-face {
+    font-family: Gilroy;
+    src: url("./gilroy-regular.woff2") format("woff2");
+    font-weight: 400;
+}
+@font-face {
+    font-family: Gilroy;
+    src: url("./gilroy-bold.woff2") format("woff2");
+    font-weight: bold;
+}

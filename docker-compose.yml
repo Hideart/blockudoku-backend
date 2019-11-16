@@ -1,0 +1,54 @@
+version: '2.1'
+services:
+  ll-front:
+    image: ll-front:latest
+    container_name: ll-front
+    environment:
+      API_URL: 'http://localhost:8081/api'
+    ports:
+    - 8080:80
+  ll-back:
+    image: ll-back:latest
+    container_name: ll-back
+    links:
+      - postgres-db
+    depends_on:
+      postgres-db:
+        condition: service_healthy
+    environment:
+      PORT: 5000
+      POSTGRES_HOST: postgres-db
+      POSTGRES_DB_NAME: ll_sa
+      POSTGRES_USER: psg-user
+      POSTGRES_PASSWORD: example
+    ports:
+    - 8081:5000
+  ll-back-migration:
+    image: ll-back:latest
+    container_name: ll-back-migration
+    links:
+      - postgres-db
+    depends_on:
+      postgres-db:
+        condition: service_healthy
+    environment:
+      PORT: 5000
+      POSTGRES_HOST: postgres-db
+      POSTGRES_DB_NAME: ll_sa
+      POSTGRES_USER: psg-user
+      POSTGRES_PASSWORD: example
+    command: 'yarn migration:prod:up'
+  postgres-db:
+    image: postgres:11.4
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: example
+      POSTGRES_USER: psg-user
+      POSTGRES_DB: ll_sa
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    expose:
+      - '5432'
