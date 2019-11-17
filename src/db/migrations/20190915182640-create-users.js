@@ -19,7 +19,7 @@ module.exports = {
       type: Sequelize.STRING(30),
     },
     nickname: {
-      type: DataTypes.STRING(30),
+      type: Sequelize.STRING(30),
       allowNull: false,
     },
     password: {

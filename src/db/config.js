@@ -1,19 +1,11 @@
 module.exports = {
   development: {
-    username: 'psg-user',
-    password: 'example',
-    database: 'll_sa',
+    username: 'db-admin',
+    password: 'Bl0ckuD0kuAdm1n',
+    database: 'blockudoku',
     host: '127.0.0.1',
     dialect: 'postgres',
-    port: '5432',
-  },
-  test: {
-    username: 'psg-user',
-    password: 'example',
-    database: 'll_sa',
-    host: '127.0.0.1',
-    dialect: 'postgres',
-    port: '5432',
+    port: '6543',
   },
   production: {
     username: process.env.POSTGRES_USER,

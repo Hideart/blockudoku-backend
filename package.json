@@ -72,7 +72,6 @@
     "dev:debug:brk": "ts-node-dev --respawn --transpileOnly --inspect-brk -- ./src/index.ts",
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
     "lint:fix": "tslint -c tslint.json 'src/**/*.ts' --fix",
-    "test": "jest --runInBand --forceExit",
     "migration:up": "node_modules/.bin/sequelize db:migrate",
     "migration:down": "node_modules/.bin/sequelize db:migrate:undo:all",
     "migration:prod:up": "cross-env NODE_ENV=production node_modules/.bin/sequelize db:migrate",
