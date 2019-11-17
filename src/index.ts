@@ -8,7 +8,7 @@ prepareApp().then((app) => {
   });
   app.listen(config.get('port'), '0.0.0.0', (err: Error) => {
     if (err) throw err;
-    Logger.info(`SuperAdmin: Backend listening on port ${config.get('port')}!`);
+    Logger.info(`BlockuDoku: Backend listening on port ${config.get('port')}!`);
   });
 }).catch(exception => {
   throw exception;

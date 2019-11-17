@@ -17,7 +17,7 @@ const config = Convict({
   port: {
     doc: 'The port to bind.',
     format: 'port',
-    default: 3000,
+    default: 3001,
     env: 'PORT',
     arg: 'port',
   },
@@ -34,72 +34,38 @@ const config = Convict({
     },
     dbName: {
       doc: 'postgres db name',
-      default: 'll_sa',
+      default: 'blockudoku',
       env: 'POSTGRES_DB_NAME',
     },
     dbUser: {
       doc: 'postgres db user',
-      default: 'psg-user',
+      default: 'db-admin',
       env: 'POSTGRES_USER',
     },
     dbPassword: {
       doc: 'postgres db password',
-      default: 'example',
+      default: 'Bl0ckuD0kuAdm1n',
       env: 'POSTGRES_PASSWORD',
     },
     dbPort: {
       doc: 'postgres db port',
-      default: 5432,
+      default: 6543,
       env: 'POSTGRES_PORT',
     }
   },
   jwtSecret: {
     doc: 'Sectet jwt key',
-    default: 'D8yKG88Cmrpfzx7kPJ91wB2ScI0qcD1I0B7JrTJP',
+    default: 'jq9DUreVjTZ5rJtfkr8zKHVZMgNedxRVfTdaMDnC',
   },
   salt4pass: {
     doc: 'Salt for user password',
-    default: 'SRMTjhxc8Q',
-  },
-  salt4channelPass: {
-    doc: 'Salt for channel partner password',
-    default: 'y}RXrfK56e',
-  },
-  salt4adminResetPassToken: {
-    doc: 'Salt for super admin reset password confirmation token',
-    default: 'BjAzcZJiTM',
-  },
-  salt4channelResetPassToken: {
-    doc: 'Salt for channel partner reset password confirmation token',
-    default: 'QFu6b2ahKa',
-  },
-  mail: {
-    mailerTransport: {
-      service: 'gmail',
-      auth: {
-        user: 'sa.leanlogic@gmail.com',
-        pass: 'testPass123',
-      },
-    },
+    default: 'ZBEC2mLtZa',
   },
   webClientHost: {
     doc: 'Link to front-end application',
     default: 'http://localhost:3000/',
     env: 'WEB_CLIENT_HOST',
   },
-  channelPartnerInviteLink: {
-    doc: 'Link to channel partner registration page',
-    default: 'http://localhost:3000/cp-reg',
-    env: 'CP_INVITE_LINK',
-  },
-  stripeSecret: {
-    doc: 'Stripe secret key for authentification',
-    default: 'sk_test_NLNjeHWPESg8lHto0DQCh1fG001idAn9mb',
-    env: 'STRIPE_SECRET',
-  },
 });
 
-if (config.get('env') === NodeEnv.DEV) {
-  config.loadFile('./config/development.json');
-}
 export default config;

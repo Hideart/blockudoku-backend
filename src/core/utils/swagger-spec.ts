@@ -11,8 +11,8 @@ export default {
   swagger: {
     host,
     info: {
-      title: 'Super admin back-end',
-      description: 'Super admin back-end',
+      title: 'BlockuDoku Tetris back-end',
+      description: 'BlockuDoku Tetris back-end',
       version: '1.0',
     },
     securityDefinitions: {

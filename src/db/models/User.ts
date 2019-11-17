@@ -4,15 +4,14 @@ import uuidv4 from 'uuid/v4';
 import { sha256 } from '../../core/services/hash';
 import { config } from '../../../config';
 import { sequelizeConnection } from '../index';
-import { IAdminModel, IAdmin } from '../../core/models/interfaces/admin';
+import { IUserModel, IUser } from '../../core/models/interfaces/user';
 import { jwtSign } from '../../core/services/jwt.service';
-import { TokenType } from '../../core/models/enums/jwt';
 
-type AdminModelStatic = typeof Model & (new (values?: IAdmin, options?: BuildOptions) => IAdminModel);
+type UserModelStatic = typeof Model & (new (values?: IUser, options?: BuildOptions) => IUserModel);
 
-export const AdminModel = <AdminModelStatic>sequelizeConnection.define('AdminModel', {
+export const UserModel = <UserModelStatic>sequelizeConnection.define('UserModel', {
   id: {
-    type: DataTypes.INTEGER.UNSIGNED,
+    type: DataTypes.UUIDV4,
     autoIncrement: true,
     primaryKey: true,
   },
@@ -20,17 +19,17 @@ export const AdminModel = <AdminModelStatic>sequelizeConnection.define('AdminMod
     type: DataTypes.STRING,
     allowNull: false,
   },
-  avatar: {
-    type: DataTypes.STRING,
-    allowNull: true,
+  nickname: {
+    type: DataTypes.STRING(30),
+    allowNull: false,
   },
   first_name: {
     type: DataTypes.STRING(30),
-    allowNull: false,
+    allowNull: true,
   },
   last_name: {
     type: DataTypes.STRING(30),
-    allowNull: false,
+    allowNull: true,
   },
   password: {
     type: DataTypes.STRING,
@@ -38,15 +37,13 @@ export const AdminModel = <AdminModelStatic>sequelizeConnection.define('AdminMod
   },
 },
   {
-    tableName: 'admins',
+    tableName: 'users',
     paranoid: true,
   },
 );
 
-AdminModel.prototype.serialize = function(): IAdmin {
+UserModel.prototype.serialize = function(): IUser {
   const user = this.toJSON();
-
-  if (user.avatar) user.avatar = config.get('currentHost') + 'storage/common/avatars/' + user.avatar;
 
   delete user.id;
   delete user.password;
@@ -57,17 +54,17 @@ AdminModel.prototype.serialize = function(): IAdmin {
   return user;
 };
 
-AdminModel.prototype.isCorrectPassword = function(password: string): boolean {
+UserModel.prototype.isCorrectPassword = function(password: string): boolean {
 
   const hashedPassword = sha256(password, config.get('salt4pass'));
   return this.password === hashedPassword;
 };
 
-AdminModel.prototype.generateJwtToken = function(): string {
-  return jwtSign({id: this.id, type: TokenType.SUPER_ADMIN});
+UserModel.prototype.generateJwtToken = function(): string {
+  return jwtSign({id: this.id});
 };
 
-AdminModel.beforeCreate((model, options): void => {
+UserModel.beforeCreate((model, options): void => {
     if (model.password) {
       const hashedPassword = sha256(model.password, config.get('salt4pass'));
       model.password = hashedPassword;

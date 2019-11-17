@@ -59,7 +59,6 @@
     "@types/jest": "^24.0.13",
     "@types/swagger-jsdoc": "0.0.2",
     "axios": "^0.19.0",
-    "jest": "^24.8.0",
     "ts-jest": "^24.0.2",
     "ts-node-dev": "^1.0.0-pre.39",
     "tslint": "^5.17.0",

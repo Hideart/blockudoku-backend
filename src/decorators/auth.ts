@@ -1,7 +1,7 @@
 import { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
 import { IncomingMessage, Server, ServerResponse } from 'http';
 
-import { IAdminModel } from '../core/models/interfaces/admin';
+import { IUserModel } from '../core/models/interfaces/user';
 
 declare module 'fastify' {
 
@@ -12,7 +12,7 @@ declare module 'fastify' {
 
   // tslint:disable-next-line:interface-name
   export interface FastifyRequest {
-    user: IAdminModel;
+    user: IUserModel;
   }
 }
 

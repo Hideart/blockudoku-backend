@@ -6,38 +6,30 @@ module.exports = {
       type: Sequelize.UUID,
       defaultValue: Sequelize.UUIDV4,
     },
-    first_name: {
-      allowNull: false,
-      type: Sequelize.STRING(30),
-    },
-    last_name: {
-      allowNull: false,
-      type: Sequelize.STRING(30),
-    },
     email: {
       allowNull: false,
       type: Sequelize.STRING(30),
     },
-    phone: {
+    first_name: {
       allowNull: true,
       type: Sequelize.STRING(30),
+    },
+    last_name: {
+      allowNull: true,
+      type: Sequelize.STRING(30),
+    },
+    nickname: {
+      type: DataTypes.STRING(30),
+      allowNull: false,
     },
     password: {
       type: Sequelize.STRING,
       allowNull: false,
     },
-    avatar: {
-      type: Sequelize.STRING,
-      allowNull: true,
-    },
-    role_id: {
-      type: Sequelize.DataTypes.UUID,
-      allowNull: true,
-      references: {
-        model: 'roles',
-        keys: 'id',
-      },
-      onDelete: 'set null',
+    balance: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+      defaultValue: 3,
     },
     createdAt: {
       allowNull: false,
