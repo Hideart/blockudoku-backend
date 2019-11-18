@@ -23,7 +23,13 @@ export const userSignInSchema: RouteSchema = {
     200: {
       description: 'Successful response',
       type: 'object',
-      properties: userResponseProps,
+      properties: {
+        token: { type: 'string' },
+        user: {
+          type: 'object',
+          properties: {...userResponseProps}
+        },
+      },
     },
     400: {
       ...ErrorSchema,
@@ -55,7 +61,7 @@ export const userSignUpSchema: RouteSchema = {
     200: {
       description: 'Successful response',
       type: 'object',
-      properties: userResponseProps,
+      properties: {...userResponseProps},
     },
     400: {
       ...ErrorSchema,
@@ -85,7 +91,7 @@ export const userUpdateSchema: RouteSchema = {
     200: {
       description: 'Successful response',
       type: 'object',
-      properties: userResponseProps,
+      properties: {...userResponseProps},
     },
     404: {
       ...ErrorSchema,
@@ -114,7 +120,7 @@ export const changeBalanceSchema: RouteSchema = {
     200: {
       description: 'Successful response',
       type: 'object',
-      properties: userResponseProps,
+      properties: {...userResponseProps},
     },
     404: {
       ...ErrorSchema,

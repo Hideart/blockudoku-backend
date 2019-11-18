@@ -3,7 +3,6 @@
   "main": "dist/index.js",
   "version": "1.0.0",
   "dependencies": {
-    "@types/xlsx-populate": "git+https://github.com/JanLoebel/types-xlsx-populate.git",
     "@hapi/topo": "^3.1.0",
     "@types/bluebird": "^3.5.27",
     "@types/busboy": "^0.2.3",
@@ -24,6 +23,7 @@
     "@types/stripe": "^6.31.4",
     "@types/uuid": "^3.4.4",
     "@types/validator": "^10.11.1",
+    "@types/xlsx-populate": "git+https://github.com/JanLoebel/types-xlsx-populate.git",
     "body-parser": "^1.19.0",
     "commander": "^2.20.0",
     "convict": "^5.0.0",
@@ -51,6 +51,7 @@
     "swagger-jsdoc": "^3.2.9",
     "ts-node": "3.3.0",
     "tsc": "^1.20150623.0",
+    "typescript": "^3.7.2",
     "uuid": "^3.3.2",
     "winston": "^3.2.1",
     "xlsx-populate": "^1.20.0"
@@ -62,7 +63,7 @@
     "ts-jest": "^24.0.2",
     "ts-node-dev": "^1.0.0-pre.39",
     "tslint": "^5.17.0",
-    "typescript": "^3.5.2"
+    "typescript": "^3.7.2"
   },
   "scripts": {
     "build": "tsc",

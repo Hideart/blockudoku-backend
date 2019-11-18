@@ -17,7 +17,7 @@ export const UserModel = <UserModelStatic>sequelizeConnection.define('UserModel'
   },
   email: {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: true,
   },
   nickname: {
     type: DataTypes.STRING(30),

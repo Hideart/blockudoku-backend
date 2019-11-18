@@ -9,7 +9,7 @@ module.exports = {
         first_name: 'Daniil',
         last_name: 'Petrov',
         nickname: 'CR33PY',
-        password: '123456', // 123456
+        password: '31d362a237983381b515c82414436cc0c22d0b0d63cd3eb9a6f1872114e5a310', // 123456
         createdAt: new Date(),
         updatedAt: new Date(),
       }], {});
