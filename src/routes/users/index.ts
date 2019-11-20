@@ -19,9 +19,9 @@ import { authenticateUser } from '../../core/services/auth.service';
 
 const router: Plugin<Server, IncomingMessage, ServerResponse, object> = (app, options, next) => {
 
-  app.post('/auth', { schema: userSignInSchema }, userSignInHandler);
+  app.put('/auth', { schema: userSignInSchema }, userSignInHandler);
 
-  app.post('/signup', { schema: userSignUpSchema }, userSignUpHandler);
+  app.put('/signup', { schema: userSignUpSchema }, userSignUpHandler);
 
   app.put('/me', {
     preValidation: app.authenticate([

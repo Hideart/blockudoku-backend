@@ -17,11 +17,11 @@ export const userSignInHandler: RequestHandler = async (request, reply) => {
 
   const user = await findUserByNicknameService(nickname);
   if (!user) {
-    throw new BadRequestError('Email or password is wrong');
+    throw new NotFoundError('Nickname or password is wrong');
   }
 
   if (!user.isCorrectPassword(password)) {
-    throw new BadRequestError('Email or password is wrong');
+    throw new NotFoundError('Nickname or password is wrong');
   }
   const response = {
     token: user.generateJwtToken(),
@@ -32,12 +32,12 @@ export const userSignInHandler: RequestHandler = async (request, reply) => {
 };
 
 export const userSignUpHandler: RequestHandler = async (request, reply) => {
-  const { nickname, password } = request.body;
+  const { nickname } = request.body;
 
   const existsUser = await findUserByNicknameService(nickname);
   if (existsUser) throw new BadRequestError('User already exists');
 
-  const userInfo = {...request.body, password: sha256(password, config.get('salt4pass'))};
+  const userInfo = {...request.body};
   const createdUser = await createUserService(userInfo);
   if (!createdUser) throw new InternalServerError('Something went wrong');
 
