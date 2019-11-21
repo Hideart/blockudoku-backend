@@ -23,7 +23,7 @@ export const userSignInHandler: RequestHandler = async (request, reply) => {
 
   if (token) {
     const decoded = jwtVerify(token);
-    if (decoded.id !== user.id) {
+    if (!decoded || decoded.id !== user.id) {
       throw new NotFoundError('User not found');
     }
   }
