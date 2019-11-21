@@ -16,8 +16,9 @@ export const userSignInSchema: RouteSchema = {
     properties: {
       nickname: { type: 'string' },
       password: { type: 'string' },
+      token: { type: 'string' },
     },
-    required: ['nickname', 'password'],
+    required: ['nickname'],
   },
   response: {
     200: {

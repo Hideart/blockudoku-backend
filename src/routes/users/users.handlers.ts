@@ -1,28 +1,37 @@
 import { RequestHandler } from 'fastify';
 
-import { sha256 } from '../../core/services/hash';
-import { config } from '../../../config';
-
 import {
   findUserByNicknameService,
   createUserService,
-  findUserByIdService,
   updateUserService,
 } from './users.service';
 
 import { BadRequestError, NotFoundError, InternalServerError } from '../../exceptions/errors';
+import { jwtVerify } from '../../core/services/jwt.service';
 
 export const userSignInHandler: RequestHandler = async (request, reply) => {
-  const { password, nickname } = request.body;
+  const { password, nickname, token } = request.body;
 
   const user = await findUserByNicknameService(nickname);
   if (!user) {
     throw new NotFoundError('Nickname or password is wrong');
   }
 
-  if (!user.isCorrectPassword(password)) {
+  if (password && !user.isCorrectPassword(password)) {
     throw new NotFoundError('Nickname or password is wrong');
   }
+
+  if (token) {
+    const decoded = jwtVerify(token);
+    if (decoded.id !== user.id) {
+      throw new NotFoundError('User not found');
+    }
+  }
+
+  if (!password && !token) {
+    throw new BadRequestError('Password or token is required');
+  }
+
   const response = {
     token: user.generateJwtToken(),
     user: user.serialize(),
