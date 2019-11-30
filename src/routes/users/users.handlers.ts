@@ -74,8 +74,36 @@ export const changeBalanceHandler: RequestHandler = async (request, reply) => {
     throw new NotFoundError('User not found');
   }
 
+  const token = request.headers.authorization.replace('Bearer ', '');
+  const decoded = jwtVerify(token);
+  if (!decoded || decoded.id !== user.id) {
+    throw new NotFoundError('User not found');
+  }
+
   const amount = Number(amountString);
-  const updateBalanceInfo = {id: user.id, info: {balance: user.balance + amount}};
+  const balance = user.balance + amount < 0 ? 0 : user.balance + amount;
+  const updateBalanceInfo = { id: user.id, info: { balance } };
   const updatedUser = await updateUserService(updateBalanceInfo);
+  reply.send(updatedUser);
+};
+
+export const changeRatingHandler: RequestHandler = async (request, reply) => {
+  const { amount: amountString, nickname } = request.body;
+
+  const user = await findUserByNicknameService(nickname);
+  if (!user) {
+    throw new NotFoundError('User not found');
+  }
+
+  const token = request.headers.authorization.replace('Bearer ', '');
+  const decoded = jwtVerify(token);
+  if (!decoded || decoded.id !== user.id) {
+    throw new NotFoundError('User not found');
+  }
+
+  const amount = Number(amountString);
+  const rating = user.rating + amount < 0 ? 0 : user.rating + amount;
+  const updateRatingInfo = { id: user.id, info: { rating } };
+  const updatedUser = await updateUserService(updateRatingInfo);
   reply.send(updatedUser);
 };

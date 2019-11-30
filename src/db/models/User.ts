@@ -35,6 +35,16 @@ export const UserModel = <UserModelStatic>sequelizeConnection.define('UserModel'
     type: DataTypes.STRING,
     allowNull: false,
   },
+  balance: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    defaultValue: 3,
+  },
+  rating: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    defaultValue: 0,
+  },
 },
   {
     tableName: 'users',

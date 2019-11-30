@@ -6,6 +6,7 @@ import {
   userSignUpHandler,
   updateUserInfoHandler,
   changeBalanceHandler,
+  changeRatingHandler,
 } from './users.handlers';
 
 import {
@@ -13,6 +14,7 @@ import {
   userSignUpSchema,
   userUpdateSchema,
   changeBalanceSchema,
+  changeRatingSchema,
 } from './users.schemas';
 
 import { authenticateUser } from '../../core/services/auth.service';
@@ -36,6 +38,13 @@ const router: Plugin<Server, IncomingMessage, ServerResponse, object> = (app, op
     ]),
     schema: changeBalanceSchema,
   }, changeBalanceHandler);
+
+  app.put('/rating', {
+    preValidation: app.authenticate([
+      authenticateUser,
+    ]),
+    schema: changeRatingSchema,
+  }, changeRatingHandler);
 
   next();
 };

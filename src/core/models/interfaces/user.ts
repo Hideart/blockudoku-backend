@@ -7,6 +7,7 @@ export interface IUser {
   nickname?: string;
   email?: string;
   balance?: number;
+  rating?: number;
   password?: string;
 }
 

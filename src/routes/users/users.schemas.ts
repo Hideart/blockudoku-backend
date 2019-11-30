@@ -3,6 +3,7 @@ import { ErrorSchema } from '../../core/models/schemas/error';
 
 const userResponseProps = {
   balance: {type: 'number'},
+  rating: {type: 'number'},
   email: {type: 'string'},
   first_name: {type: 'string'},
   last_name: {type: 'string'},
@@ -115,7 +116,7 @@ export const changeBalanceSchema: RouteSchema = {
       nickname: { type: 'string' },
       amount: { type: 'number' },
     },
-    required: ['amount'],
+    required: ['nickname', 'amount'],
   },
   response: {
     200: {
@@ -134,4 +135,10 @@ export const changeBalanceSchema: RouteSchema = {
   },
   summary: 'Update user balance',
   tags: ['User'],
+};
+
+export const changeRatingSchema: RouteSchema = {
+  ...changeBalanceSchema,
+  description: 'Update user rating',
+  summary: 'Update user rating',
 };
